@@ -1,4 +1,4 @@
-namespace PraticaProiect
+namespace PracticaProiect
 {
     public class WeatherForecast
     {
