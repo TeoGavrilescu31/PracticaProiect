@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PraticaProiect.Controllers
+namespace PracticaProiect.Controllers
 {
     [ApiController]
     [Route("[controller]")]
