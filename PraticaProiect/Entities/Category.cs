@@ -10,5 +10,6 @@ namespace PraticaProiect.Entities
         [Required]
         [MaxLength(100)]
         public string CategoryName { get; set; }
+        public bool? Deleted { get; set; }
     }
 }
