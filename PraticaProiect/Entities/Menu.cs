@@ -16,7 +16,7 @@ namespace PraticaProiect.Entities
         [Required]
         public float Price { get; set; }
         public List<OrderMenu> OrderMenu { get; set; }
-        public bool? Deleted { get; set; }
+        public bool? Deleted { get; set; } 
 
     }
 }

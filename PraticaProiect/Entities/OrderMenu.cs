@@ -11,6 +11,6 @@ namespace PraticaProiect.Entities
         public Guid MenuID { get; set; }
         public Order Order { get; set; }
         public Menu Menu { get; set; }
-        public bool? Deleted { get; set; }
+        public bool? Deleted { get; set; } 
     }
 }

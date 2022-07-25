@@ -19,7 +19,7 @@ namespace PracticaProiect.Entities
         [MaxLength(10)]
         public string Phone { get; set; }
         public List<OrderMenu> OrderMenu { get; set; }
-        public bool? Deleted { get; set; }
+        public bool? Deleted { get; set; } 
 
     }
 }
