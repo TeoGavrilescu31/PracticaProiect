@@ -1,7 +1,6 @@
-﻿using PracticaProiect.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace PraticaProiect.Entities
+namespace PracticaProiect.Entities
 {
     public class OrderMenu
     {

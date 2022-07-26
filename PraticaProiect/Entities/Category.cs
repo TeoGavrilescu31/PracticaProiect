@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PraticaProiect.Entities
+namespace PracticaProiect.Entities
 {
     public class Category
     {
