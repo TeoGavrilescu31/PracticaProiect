@@ -9,7 +9,7 @@ namespace PracticaProiect.Entities
         public Guid ID { get; set; }
         [Required]
         public Guid CategoryID { get; set; }
-        [ForeignKey("CategoryId")]
+        [ForeignKey("CategoryID")]
         public virtual Category Category { get; set; }
         [MaxLength(100)]
         public string MenuName { get; set; }

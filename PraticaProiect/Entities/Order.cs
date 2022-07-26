@@ -10,7 +10,7 @@ namespace PracticaProiect.Entities
         [Required]
         public Guid UserID { get; set; }
         [ForeignKey("UserID")]
-        public virtual User? User { get; set; }
+        public virtual User User { get; set; }
 
         [MaxLength(150)]
         public string Address { get; set; }

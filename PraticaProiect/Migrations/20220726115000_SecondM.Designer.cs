@@ -12,14 +12,15 @@ using PracticaProiect.Contexts;
 namespace PracticaProiect.Migrations
 {
     [DbContext(typeof(RestaurantContext))]
-    [Migration("20220726102742_ThirdM")]
-    partial class ThirdM
+    [Migration("20220726115000_SecondM")]
+    partial class SecondM
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.7")
+                .HasAnnotation("ProductVersion", "7.0.0-preview.6.22329.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -52,9 +53,6 @@ namespace PracticaProiect.Migrations
                     b.Property<Guid>("CategoryID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
@@ -68,7 +66,7 @@ namespace PracticaProiect.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Menus");
                 });
@@ -167,7 +165,7 @@ namespace PracticaProiect.Migrations
                 {
                     b.HasOne("PracticaProiect.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

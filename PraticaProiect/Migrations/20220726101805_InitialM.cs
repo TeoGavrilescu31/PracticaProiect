@@ -45,7 +45,6 @@ namespace PracticaProiect.Migrations
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CategoryID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CategoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     MenuName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: true)
@@ -54,8 +53,8 @@ namespace PracticaProiect.Migrations
                 {
                     table.PrimaryKey("PK_Menus", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Menus_Categories_CategoryId",
-                        column: x => x.CategoryId,
+                        name: "FK_Menus_Categories_CategoryID",
+                        column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -109,9 +108,9 @@ namespace PracticaProiect.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Menus_CategoryId",
+                name: "IX_Menus_CategoryID",
                 table: "Menus",
-                column: "CategoryId");
+                column: "CategoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderMenus_MenuID",

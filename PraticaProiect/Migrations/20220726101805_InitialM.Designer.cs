@@ -52,9 +52,6 @@ namespace PracticaProiect.Migrations
                     b.Property<Guid>("CategoryID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
@@ -68,7 +65,7 @@ namespace PracticaProiect.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Menus");
                 });
@@ -167,7 +164,7 @@ namespace PracticaProiect.Migrations
                 {
                     b.HasOne("PracticaProiect.Entities.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
