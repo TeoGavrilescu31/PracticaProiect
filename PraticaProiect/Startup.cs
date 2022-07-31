@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PracticaProiect.Contexts;
+using PraticaProiect.Services.Repositories;
+using PraticaProiect.Services.UnitsOfWork;
 
 namespace PracticaProiect
 {
@@ -16,6 +18,13 @@ namespace PracticaProiect
         {
             var connectionString = builder.Configuration["ConnectionStrings:RestaurantDBConnectionString"];
             builder.Services.AddDbContext<RestaurantContext>(o => o.UseSqlServer(connectionString));
+
+            builder.Services.AddScoped<IMenuRepository, MenuRepository>();
+            builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+            builder.Services.AddScoped<IOrderUnitOfWork,OrderUnitOfWork>();
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             builder.Services.AddControllers();
         }
