@@ -2,7 +2,7 @@
 using PracticaProiect.Contexts;
 using PracticaProiect.Entities;
 
-namespace PraticaProiect.Services.Repositories
+namespace PracticaProiect.Services.Repositories
 {
     public class MenuRepository : Repository<Menu>, IMenuRepository
     {

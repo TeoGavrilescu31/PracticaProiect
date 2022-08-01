@@ -3,7 +3,7 @@ using PracticaProiect.Contexts;
 using PracticaProiect.Entities;
 using PracticaProiect.Services.Repositories;
 
-namespace PraticaProiect.Services.Repositories
+namespace PracticaProiect.Services.Repositories
 {
     public class OrderMenuRepository : Repository<OrderMenu>, IOrderMenuRepository
     {

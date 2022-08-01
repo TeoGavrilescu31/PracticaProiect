@@ -1,18 +1,19 @@
 ﻿using PracticaProiect.Contexts;
-using PracticaProiect.Services.UnitsOfWork;
 using PracticaProiect.Services.Repositories;
 
 namespace PracticaProiect.Services.UnitsOfWork
 {
-    public class UserUnitOfWork : IUserUnitOfWork
+    public class MenuUnitOfWork : IMenuUnitOfWork
     {
         private readonly RestaurantContext _context;
-        public UserUnitOfWork(RestaurantContext context, IUserRepository users)
+        public MenuUnitOfWork(RestaurantContext context, ICategoryRepository categories, IMenuRepository menus)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-            Users = users ?? throw new ArgumentNullException(nameof(users));
+            Categories = categories ?? throw new ArgumentNullException(nameof(categories));
+            Menus = menus ?? throw new ArgumentNullException(nameof(menus));
         }
-        public IUserRepository Users { get; }
+        public ICategoryRepository Categories { get; }
+        public IMenuRepository Menus { get; }
 
         public int Complete()
         {

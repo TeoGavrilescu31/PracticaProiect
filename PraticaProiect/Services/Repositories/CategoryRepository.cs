@@ -1,6 +1,5 @@
 ﻿using PracticaProiect.Contexts;
 using PracticaProiect.Entities;
-using PraticaProiect.Services.Repositories;
 
 namespace PracticaProiect.Services.Repositories
 {

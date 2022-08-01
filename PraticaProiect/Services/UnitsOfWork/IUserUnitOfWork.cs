@@ -1,4 +1,4 @@
-﻿using PraticaProiect.Services.Repositories;
+﻿using PracticaProiect.Services.Repositories;
 
 namespace PracticaProiect.Services.UnitsOfWork
 {

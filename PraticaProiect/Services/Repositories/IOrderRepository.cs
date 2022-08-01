@@ -1,6 +1,6 @@
 ﻿using PracticaProiect.Entities;
 
-namespace PraticaProiect.Services.Repositories
+namespace PracticaProiect.Services.Repositories
 {
     public interface IOrderRepository:IRepository<Order>
     {

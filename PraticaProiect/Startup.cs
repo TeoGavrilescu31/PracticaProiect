@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PracticaProiect.Contexts;
-using PraticaProiect.Services.Repositories;
-using PraticaProiect.Services.UnitsOfWork;
+using PracticaProiect.Services.Repositories;
+using PracticaProiect.Services.UnitsOfWork;
 
 namespace PracticaProiect
 {
@@ -21,8 +21,13 @@ namespace PracticaProiect
 
             builder.Services.AddScoped<IMenuRepository, MenuRepository>();
             builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IOrderMenuRepository, OrderMenuRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             builder.Services.AddScoped<IOrderUnitOfWork,OrderUnitOfWork>();
+            builder.Services.AddScoped<IMenuUnitOfWork, MenuUnitOfWork>();
+            builder.Services.AddScoped<IUserUnitOfWork, UserUnitOfWork>();
 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

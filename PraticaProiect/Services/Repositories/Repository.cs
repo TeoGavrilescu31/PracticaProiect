@@ -1,7 +1,7 @@
 ﻿using PracticaProiect.Contexts;
 using System.Linq.Expressions;
 
-namespace PraticaProiect.Services.Repositories
+namespace PracticaProiect.Services.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {

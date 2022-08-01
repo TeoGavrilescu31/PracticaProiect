@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using PracticaProiect.Entities;
 
-namespace PraticaProiect.Profiles
+namespace PracticaProiect.Profiles
 {
     public class MenuProfile : Profile
     {

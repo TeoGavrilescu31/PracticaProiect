@@ -1,4 +1,4 @@
-﻿namespace PraticaProiect.ExternalModels
+﻿namespace PracticaProiect.ExternalModels
 {
     public class CategoryDTO
     {

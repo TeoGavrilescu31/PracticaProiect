@@ -1,17 +1,19 @@
 ﻿using PracticaProiect.Contexts;
-using PraticaProiect.Services.Repositories;
+using PracticaProiect.Services.Repositories;
 
-namespace PraticaProiect.Services.UnitsOfWork
+namespace PracticaProiect.Services.UnitsOfWork
 {
     public class OrderUnitOfWork : IOrderUnitOfWork
     {
         private readonly RestaurantContext _context;
-        public OrderUnitOfWork(RestaurantContext context, IOrderRepository orders)
+        public OrderUnitOfWork(RestaurantContext context, IOrderRepository orders, IOrderMenuRepository ordermenus)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
             Orders = orders ?? throw new ArgumentNullException(nameof(orders));
+            OrderMenus = ordermenus ?? throw new ArgumentNullException(nameof(ordermenus));
         }
         public IOrderRepository Orders { get; }
+        public IOrderMenuRepository OrderMenus { get;}
 
         public int Complete()
         {
