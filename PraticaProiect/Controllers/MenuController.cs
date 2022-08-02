@@ -75,7 +75,20 @@ namespace PraticaProiect.Controllers
                 return NotFound();
             }
             return Ok(_mapper.Map<CategoryDTO>(categoryEntity));
-
+        }
+        [HttpDelete]
+        [Route("delete/{id}", Name = "DeleteMenu")]
+        public IActionResult DeleteMenu(Guid id)
+        {
+            var menuEntity = _menuUnit.Menus.Get(id);
+            if (menuEntity == null)
+            {
+                return NotFound();
+            }
+            menuEntity.Deleted = true;
+            _menuUnit.Menus.Remove(menuEntity);
+            _menuUnit.Complete();
+            return NoContent();
         }
     }
 }

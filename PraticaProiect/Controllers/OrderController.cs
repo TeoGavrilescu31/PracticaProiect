@@ -66,6 +66,20 @@ namespace PraticaProiect.Controllers
             _orderUnit.Orders.Get(order.ID);
             return CreatedAtRoute("GetOrder", new { id = order.ID }, _mapper.Map<OrderDTO>(orderEntity));
         }
+        [HttpDelete]
+        [Route("delete/{id}", Name ="DeleteOrder")]
+        public IActionResult DeleteOrder(Guid id)
+        {
+            var orderEntity = _orderUnit.Orders.Get(id);
+            if(orderEntity==null)
+            {
+                return NotFound();
+            }
+            orderEntity.Deleted = true;
+            _orderUnit.Orders.Remove(orderEntity);
+            _orderUnit.Complete();
+            return NoContent();
+        }
 
     }
 }

@@ -53,7 +53,7 @@ namespace PracticaProiect.Services.Repositories
 
         public TEntity Remove(TEntity entity)
         {
-            _context.Set<TEntity>().Remove(entity);
+            _context.Set<TEntity>().Update(entity);
             return entity;
         }
 
