@@ -42,7 +42,7 @@ namespace PracticaProiect.Controllers
             {
                 return NotFound();
             }
-            return Ok(_mapper.Map<UserDTO>(userEntities));
+            return Ok(_mapper.Map<List<UserDTO>>(userEntities));
         }
 
         [Route("Register", Name = "Register new account")]

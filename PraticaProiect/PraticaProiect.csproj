@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="itext7" Version="7.2.3" />
     <PackageReference Include="Microsoft.Azure.DurableTask.Core" Version="2.10.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0-preview.6.22329.4" />
