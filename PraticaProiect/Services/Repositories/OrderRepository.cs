@@ -17,6 +17,7 @@ namespace PracticaProiect.Services.Repositories
             return _context.Orders
                 .Where(o => o.ID == OrderId && (o.Deleted == false || o.Deleted == null))
                 .Include(o => o.User)
+                .Include(o=>o.OrderMenu)
                 .FirstOrDefault();
         }
     }
