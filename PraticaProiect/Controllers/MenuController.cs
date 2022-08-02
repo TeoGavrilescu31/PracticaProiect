@@ -56,7 +56,7 @@ namespace PraticaProiect.Controllers
 
         [HttpPost]
         [Route("add", Name = "AddMenu")]
-        public IActionResult AddOrder([FromBody] MenuDTO menu)
+        public IActionResult AddMenu([FromBody] MenuDTO menu)
         {
             var menuEntity = _mapper.Map<Menu>(menu);
             _menuUnit.Menus.Add(menuEntity);
