@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PracticaProiect.Entities;
@@ -19,7 +20,7 @@ namespace PraticaProiect.Controllers
             _menuUnit = menuUnit ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("{id}", Name = "GetMenu")]
         public IActionResult GetMenu(Guid id)
         {
@@ -30,7 +31,7 @@ namespace PraticaProiect.Controllers
             }
             return Ok(_mapper.Map<MenuDTO>(menuEntity));
         }
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("", Name = "GetAllMenus")]
         public IActionResult GetAllMenus()
         {
@@ -42,7 +43,7 @@ namespace PraticaProiect.Controllers
             return Ok(_mapper.Map<List<MenuDTO>>(menuEntities));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("details/{id}", Name = "GetMenuDetails")]
         public IActionResult GetMenuDetails(Guid id)
         {
@@ -54,7 +55,7 @@ namespace PraticaProiect.Controllers
             return Ok(_mapper.Map<MenuDTO>(menuEntity));
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         [Route("add", Name = "AddMenu")]
         public IActionResult AddMenu([FromBody] MenuDTO menu)
         {
@@ -65,7 +66,7 @@ namespace PraticaProiect.Controllers
             return CreatedAtRoute("GetMenu", new { id = menu.ID }, _mapper.Map<MenuDTO>(menuEntity));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("category/{categoryId}", Name = "GetCategoryDetails")]
         public IActionResult GetCategoryDetails(Guid categoryId)
         {
@@ -76,7 +77,7 @@ namespace PraticaProiect.Controllers
             }
             return Ok(_mapper.Map<CategoryDTO>(categoryEntity));
         }
-        [HttpDelete]
+        [HttpDelete, Authorize]
         [Route("delete/{id}", Name = "DeleteMenu")]
         public IActionResult DeleteMenu(Guid id)
         {

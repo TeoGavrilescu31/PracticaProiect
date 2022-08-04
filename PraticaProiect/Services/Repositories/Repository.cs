@@ -62,5 +62,11 @@ namespace PracticaProiect.Services.Repositories
             _context.Set<TEntity>().RemoveRange(entities);
             return entities;
         }
+
+        public TEntity Update(TEntity entity)
+        {
+            _context.Set<TEntity>().Update(entity);
+            return entity;
+        }
     }
 }

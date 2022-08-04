@@ -4,6 +4,9 @@ using PracticaProiect.Services.Repositories;
 using PracticaProiect.Services.UnitsOfWork;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace PracticaProiect
 {
@@ -18,6 +21,26 @@ namespace PracticaProiect
 
         public static void ConfigurationService(WebApplicationBuilder builder)
         {
+            builder.Services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            })
+            .AddJwtBearer(options =>
+             {
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     ValidateIssuer = true,
+                     ValidateAudience = true,
+                     ValidateLifetime = true,
+                     ValidateIssuerSigningKey = true,
+
+                     ValidIssuer = "https://localhost:7090/",
+                     ValidAudience = "https://localhost:7090/",
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyLOL"))
+                 };
+             });
             var connectionString = builder.Configuration["ConnectionStrings:RestaurantDBConnectionString"];
             builder.Services.AddDbContext<RestaurantContext>(o => o.UseSqlServer(connectionString));
 
@@ -50,6 +73,7 @@ namespace PracticaProiect
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.MapControllers();
         }

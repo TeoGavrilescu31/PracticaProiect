@@ -12,6 +12,7 @@ namespace PracticaProiect.Services.Repositories
         TEntity Get(Guid id);
         TEntity Remove(TEntity entity);
         IEnumerable<TEntity> RemoveRange(IEnumerable<TEntity> entities);
+        TEntity Update(TEntity entity);
 
 
     }

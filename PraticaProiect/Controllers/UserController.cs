@@ -4,6 +4,12 @@ using PracticaProiect.ExternalModels;
 using PracticaProiect.Services.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using PracticaProiect.Services.UnitsOfWork;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using PraticaProiect.ExternalModels;
 
 namespace PracticaProiect.Controllers
 {
@@ -21,7 +27,7 @@ namespace PracticaProiect.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("{id}", Name ="GetUser")]
         public IActionResult GetUser(Guid id)
         {
@@ -33,7 +39,7 @@ namespace PracticaProiect.Controllers
             return Ok(_mapper.Map<UserDTO>(userEntity));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("", Name = "GetAllUsers")]
         public IActionResult GetAllUsers()
         {
@@ -46,7 +52,7 @@ namespace PracticaProiect.Controllers
         }
 
         [Route("Register", Name = "Register new account")]
-        [HttpPost]
+        [HttpPost, Authorize]
         public IActionResult Register([FromBody] UserDTO user)
         {
             var userEntity = _mapper.Map<User>(user);
@@ -56,14 +62,14 @@ namespace PracticaProiect.Controllers
 
             _userUnit.Users.Get(userEntity.ID);
 
-            return CreatedAtRoute("Get User",
+            return CreatedAtRoute("GetUser",
                 new { id = userEntity.ID },
                 _mapper.Map<UserDTO>(userEntity));
         }
 
         [Route("login")]
         [HttpPost]
-        public IActionResult Login([FromBody] UserDTO user)
+        public IActionResult Login([FromBody] LoginDTO user)
         {
             if(user == null)
             {
@@ -74,7 +80,19 @@ namespace PracticaProiect.Controllers
 
             if(foundUser != null)
             {
-                return Ok();
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyLOL"));
+                var singingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+                var tokenOptions = new JwtSecurityToken(
+                    issuer: "https://localhost:7090/",
+                    audience: "https://localhost:7090/",
+                    claims: new List<Claim>(),
+                    expires:DateTime.Now.AddHours(8),
+                    signingCredentials: singingCredentials
+                    );
+
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                return Ok(new { Token = tokenString });
             }
             else
             {

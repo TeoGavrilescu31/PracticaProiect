@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PracticaProiect.Entities;
@@ -21,7 +22,7 @@ namespace PraticaProiect.Controllers
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("{id}", Name = "GetOrder")]
         public IActionResult GetOrder(Guid id)
         {
@@ -33,7 +34,7 @@ namespace PraticaProiect.Controllers
             return Ok(_mapper.Map<OrderDTO>(orderEntity));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("", Name = "GetAllOrders")]
         public IActionResult GetAllOrders()
         {
@@ -45,7 +46,7 @@ namespace PraticaProiect.Controllers
             return Ok(_mapper.Map<List<OrderDTO>>(orderEntities));
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [Route("details/{id}", Name = "GetOrderDetails")]
         public IActionResult GetOrderDetails(Guid id)
         {
@@ -56,7 +57,7 @@ namespace PraticaProiect.Controllers
             }
             return Ok(_mapper.Map<OrderDTO>(orderEntity));
         }
-        [HttpPost]
+        [HttpPost, Authorize]
         [Route("add", Name = "AddOrder")]
         public IActionResult AddOrder([FromBody] OrderDTO order)
         {
@@ -66,7 +67,7 @@ namespace PraticaProiect.Controllers
             _orderUnit.Orders.Get(order.ID);
             return CreatedAtRoute("GetOrder", new { id = order.ID }, _mapper.Map<OrderDTO>(orderEntity));
         }
-        [HttpDelete]
+        [HttpDelete, Authorize]
         [Route("delete/{id}", Name ="DeleteOrder")]
         public IActionResult DeleteOrder(Guid id)
         {
@@ -79,6 +80,16 @@ namespace PraticaProiect.Controllers
             _orderUnit.Orders.Remove(orderEntity);
             _orderUnit.Complete();
             return NoContent();
+        }
+        [HttpPut, Authorize]
+        [Route("{id}", Name = "UpdateOrder")]
+        public IActionResult UpdateOrder([FromBody] OrderDTO order)
+        {
+            var orderEntity = _mapper.Map<Order>(order);
+            _orderUnit.Orders.Update(orderEntity);
+            _orderUnit.Complete();
+            _orderUnit.Orders.Get(order.ID);
+            return CreatedAtRoute("GetOrder", new { id = order.ID }, _mapper.Map<OrderDTO>(orderEntity));
         }
 
     }
